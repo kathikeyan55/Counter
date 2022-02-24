@@ -43,11 +43,19 @@ const reducer = (state, action) => {
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, Products);
-  
+  const [count , setCount] = useState(0)
+  useEffect(()=>{
+    let cnt = 0 ;
+    state.forEach((item) => {
+      if(item.count != 0) cnt += 1
+    })
+    setCount(cnt)
+  },[state])
   return (
     <div className="container">
       <div className="counter-container">
         <div className="Top_nav">
+          <h1>{count}</h1>
           <p className="heading">Items</p>
         </div>
         <div className="nav_button">
